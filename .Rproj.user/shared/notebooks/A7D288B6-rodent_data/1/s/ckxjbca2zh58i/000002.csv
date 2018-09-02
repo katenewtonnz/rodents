@@ -1,0 +1,5 @@
+"0","rodents <- complaints %>% "
+"0","  select(Unique.Key, Created.Date, Descriptor, Location.Type, Incident.Zip, "
+"0","         Incident.Address, Street.Name, City, BBL, Borough, Latitude, "
+"0","         Longitude, Location) %>% "
+"0","  filter(Descriptor %in% c(""Rat Sighting"", ""Mouse Sighting""))"

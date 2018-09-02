@@ -1,0 +1,7 @@
+"0","# Create summarised data to map "
+"0","rodent_tracts <- rodent_points %>% "
+"0","  group_by(GEOID) %>%"
+"0","  summarise(total=n())"
+"0","manhattan_tracts <- manhattan_points %>% "
+"0","  group_by(GEOID) %>%"
+"0","  summarise(total=n())"

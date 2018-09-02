@@ -1,0 +1,454 @@
+unzip(Service_Requests_from_2010_to_Present_rodents.ZIP, unzip = "Service_Requests_from_2010_to_Present_rodents.csv")
+unzip(Service_Requests_from_2010_to_Present_rodents.zip, unzip = "Service_Requests_from_2010_to_Present_rodents.csv")
+unzip("Service_Requests_from_2010_to_Present_rodents.zip", unzip = "Service_Requests_from_2010_to_Present_rodents.csv")
+unzip("Service_Requests_from_2010_to_Present_rodents.zip", "Service_Requests_from_2010_to_Present_rodents.csv")
+unzip("Service_Requests_from_2010_to_Present_rodents.zip", "Service_Requests_from_2010_to_Present_rodents.csv")
+complaints <- read.csv("Service_Requests_from_2010_to_Present_rodents.csv", stringsAsFactors = F)
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+library(stringr)
+unzip("Service_Requests_from_2010_to_Present_rodents.zip", "Service_Requests_from_2010_to_Present_rodents.csv")
+library(sf)
+library(censusapi)
+library(tigris)
+options(tigris_class = "sf")
+# Creating two dataframes - one just for New York and the other for all five boroughs.
+# Final visualisations for this project focused on Manhattan but code supplied for both options.
+nyc <- tracts(state = "NY", county = "New York", cb=T)
+five_boroughs <- rbind_tigris(
+tracts(state = "NY", county = "New York", cb = TRUE),
+tracts(state = "NY", county = "Kings", cb = TRUE),
+tracts(state = "NY", county = "Bronx", cb = TRUE),
+tracts(state = "NY", county = "Richmond", cb = TRUE),
+tracts(state = "NY", county = "Queens", cb = TRUE))
+rodents <- complaints %>%
+select(Unique.Key, Created.Date, Descriptor, Location.Type, Incident.Zip,
+Incident.Address, Street.Name, City, BBL, Borough, Latitude,
+Longitude, Location) %>%
+filter(Descriptor %in% c("Rat Sighting", "Mouse Sighting"))
+# Get rid of any NAs in the Longitude and Latitude columns so it doesn't throw errors when doing spatial joins later
+rodents_complete <- rodents[complete.cases(rodents[ , 11:12]),]
+rodents$date <- mdy_hms(rodents$Created.Date)
+rodents$year <- year(rodents$date)
+rodents <- rodent_points %>% filter(year==c(2013, 2014, 2015, 2016, 2017, 2018))
+View(rodents)
+rodents <- rodents %>% filter(year==c(2013, 2014, 2015, 2016, 2017, 2018))
+# Tidy up date information and limit to 2013 onwards
+rodents$date <- mdy_hms(rodents$Created.Date)
+rodents$year <- year(rodents$date)
+rodents <- rodents %>% filter(year==c(2013, 2014, 2015, 2016, 2017, 2018))
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+library(stringr)
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+library(stringr)
+library("dplyr", lib.loc="\\\\Wasp/Profiles$/Folder Redirection/knewton/My Documents/R/win-library/3.5")
+library("ggplot2", lib.loc="\\\\Wasp/Profiles$/Folder Redirection/knewton/My Documents/R/win-library/3.5")
+library("stringr", lib.loc="\\\\Wasp/Profiles$/Folder Redirection/knewton/My Documents/R/win-library/3.5")
+library("tidyverse", lib.loc="\\\\Wasp/Profiles$/Folder Redirection/knewton/My Documents/R/win-library/3.5")
+library("lubridate", lib.loc="\\\\Wasp/Profiles$/Folder Redirection/knewton/My Documents/R/win-library/3.5")
+library("sf", lib.loc="\\\\Wasp/Profiles$/Folder Redirection/knewton/My Documents/R/win-library/3.5")
+library("tigris", lib.loc="\\\\Wasp/Profiles$/Folder Redirection/knewton/My Documents/R/win-library/3.5")
+library("censusapi", lib.loc="\\\\Wasp/Profiles$/Folder Redirection/knewton/My Documents/R/win-library/3.5")
+View(rodents)
+View(rodents)
+View(rodents_complete)
+complaints <- read.csv("Service_Requests_from_2010_to_Present_rodents.csv", stringsAsFactors = F)
+nyc <- tracts(state = "NY", county = "New York", cb=T)
+rodents <- complaints %>%
+select(Unique.Key, Created.Date, Descriptor, Location.Type, Incident.Zip,
+Incident.Address, Street.Name, City, BBL, Borough, Latitude,
+Longitude, Location) %>%
+filter(Descriptor %in% c("Rat Sighting", "Mouse Sighting"))
+rodents_complete <- rodents[complete.cases(rodents[ , 11:12]),]
+rodents$date <- mdy_hms(rodents$Created.Date)
+rodents$year <- year(rodents$date)
+rodents <- rodents %>% filter(year==c(2013, 2014, 2015, 2016, 2017, 2018))
+rodents <- rodents %>% filter(year==c(2013, 2014, 2015, 2016, 2017))
+complaints <- read.csv("Service_Requests_from_2010_to_Present_rodents.csv", stringsAsFactors = F)
+nyc <- tracts(state = "NY", county = "New York", cb=T)
+rodents <- complaints %>%
+select(Unique.Key, Created.Date, Descriptor, Location.Type, Incident.Zip,
+Incident.Address, Street.Name, City, BBL, Borough, Latitude,
+Longitude, Location) %>%
+filter(Descriptor %in% c("Rat Sighting", "Mouse Sighting"))
+View(rodents)
+rodents_complete <- rodents[complete.cases(rodents[ , 11:12]),]
+rodents$date <- mdy_hms(rodents$Created.Date)
+rodents$year <- year(rodents$date)
+rodents <- rodents %>% filter(year==c(2013, 2014, 2015, 2016, 2017))
+complaints <- read.csv("Service_Requests_from_2010_to_Present_rodents.csv", stringsAsFactors = F)
+nyc <- tracts(state = "NY", county = "New York", cb=T)
+rodents <- complaints %>%
+select(Unique.Key, Created.Date, Descriptor, Location.Type, Incident.Zip,
+Incident.Address, Street.Name, City, BBL, Borough, Latitude,
+Longitude, Location) %>%
+filter(Descriptor %in% c("Rat Sighting", "Mouse Sighting"))
+# Get rid of any NAs in the Longitude and Latitude columns so it doesn't throw errors when doing spatial joins later
+rodents_complete <- rodents[complete.cases(rodents[ , 11:12]),]
+# Tidy up date information and limit to last five full calendar years
+rodents$date <- mdy_hms(rodents$Created.Date)
+rodents$year <- year(rodents$date)
+rodents <- rodents %>% filter(year==c(2013, 2014, 2015, 2016, 2017))
+complaints <- read.csv("Service_Requests_from_2010_to_Present_rodents.csv", stringsAsFactors = F)
+nyc <- tracts(state = "NY", county = "New York", cb=T)
+rodents <- complaints %>%
+select(Unique.Key, Created.Date, Descriptor, Location.Type, Incident.Zip,
+Incident.Address, Street.Name, City, BBL, Borough, Latitude,
+Longitude, Location) %>%
+filter(Descriptor %in% c("Rat Sighting", "Mouse Sighting"))
+# Get rid of any NAs in the Longitude and Latitude columns so it doesn't throw errors when doing spatial joins later
+rodents_complete <- rodents[complete.cases(rodents[ , 11:12]),]
+rodents$date <- mdy_hms(rodents$Created.Date)
+rodents$year <- year(rodents$date)
+complaints <- read.csv("Service_Requests_from_2010_to_Present_rodents.csv", stringsAsFactors = F)
+nyc <- tracts(state = "NY", county = "New York", cb=T)
+rodents <- complaints %>%
+select(Unique.Key, Created.Date, Descriptor, Location.Type, Incident.Zip,
+Incident.Address, Street.Name, City, BBL, Borough, Latitude,
+Longitude, Location) %>%
+filter(Descriptor %in% c("Rat Sighting", "Mouse Sighting"))
+# Get rid of any NAs in the Longitude and Latitude columns so it doesn't throw errors when doing spatial joins later
+rodents_complete <- rodents[complete.cases(rodents[ , 11:12]),]
+rodents_complete$date <- mdy_hms(rodents_complete$Created.Date)
+rodents_complete$year <- year(rodents_complete$date)
+rodents_final <- rodents_complete %>% filter(year==c(2013, 2014, 2015, 2016, 2017))
+unique(rodents_complete$year)
+sum(is.na(rodents_complete$year))
+rm(rodents_final)
+five_boroughs <- rbind_tigris(
+tracts(state = "NY", county = "New York", cb = TRUE),
+tracts(state = "NY", county = "Kings", cb = TRUE),
+tracts(state = "NY", county = "Bronx", cb = TRUE),
+tracts(state = "NY", county = "Richmond", cb = TRUE),
+tracts(state = "NY", county = "Queens", cb = TRUE))
+rodents_spatial <- rodents_complete %>% st_as_sf(coords=c("Longitude", "Latitude"),
+crs = "+proj=longlat") %>%
+st_transform(crs=st_crs(five_boroughs))
+rodent_points <- st_join(five_boroughs, rodents_spatial, left=T)
+manhattan_points <- st_join(nyc, rodents_spatial, left=T)
+# Create summarised data to map
+rodent_tracts <- rodent_points %>%
+group_by(GEOID) %>%
+summarise(total=n())
+manhattan_tracts <- manhattan_points %>%
+group_by(GEOID) %>%
+summarise(total=n())
+boroughs <- counties(state="NY", cb=T)
+borough_borders <- filter(boroughs, NAME %in% c("New York", "Kings", "Bronx", "Richmond", "Queens"))
+pizza_rat <- data.frame(name = "Pizza Rat (2015)", Longitude = -73.982272, Latitude = 40.732955)
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+library(stringr)
+unzip("Service_Requests_from_2010_to_Present_rodents.zip", "Service_Requests_from_2010_to_Present_rodents.csv")
+complaints <- read.csv("Service_Requests_from_2010_to_Present_rodents.csv", stringsAsFactors = F)
+library(sf)
+library(censusapi)
+library(tigris)
+options(tigris_class = "sf")
+nyc <- tracts(state = "NY", county = "New York", cb=T)
+five_boroughs <- rbind_tigris(
+tracts(state = "NY", county = "New York", cb = TRUE),
+tracts(state = "NY", county = "Kings", cb = TRUE),
+tracts(state = "NY", county = "Bronx", cb = TRUE),
+tracts(state = "NY", county = "Richmond", cb = TRUE),
+tracts(state = "NY", county = "Queens", cb = TRUE))
+rodents <- complaints %>%
+select(Unique.Key, Created.Date, Descriptor, Location.Type, Incident.Zip,
+Incident.Address, Street.Name, City, BBL, Borough, Latitude,
+Longitude, Location) %>%
+filter(Descriptor %in% c("Rat Sighting", "Mouse Sighting"))
+rodents_complete <- rodents[complete.cases(rodents[ , 11:12]),]
+# Tidy up date information (not used in final visualisation)
+rodents_complete$date <- mdy_hms(rodents_complete$Created.Date)
+rodents_complete$year <- year(rodents_complete$date)
+# Add spatial data to dataframe
+rodents_spatial <- rodents_complete %>% st_as_sf(coords=c("Longitude", "Latitude"),
+crs = "+proj=longlat") %>%
+st_transform(crs=st_crs(five_boroughs))
+# Map points to Census tracts for all five boroughs and Manhattan only
+rodent_points <- st_join(five_boroughs, rodents_spatial, left=T)
+manhattan_points <- st_join(nyc, rodents_spatial, left=T)
+# Create summarised data to map
+rodent_tracts <- rodent_points %>%
+group_by(GEOID) %>%
+summarise(total=n())
+manhattan_tracts <- manhattan_points %>%
+group_by(GEOID) %>%
+summarise(total=n())
+boroughs <- counties(state="NY", cb=T)
+borough_borders <- filter(boroughs, NAME %in% c("New York", "Kings", "Bronx", "Richmond", "Queens"))
+pizza_rat <- data.frame(name = "Pizza Rat (2015)", Longitude = -73.982272, Latitude = 40.732955)
+View(manhattan_tracts)
+max(manhattan_tracts$total)
+mean(manhattan_tracts$total)
+median(manhattan_tracts$total)
+ggplot(manhattan_tracts) +
+geom_sf(aes(fill = total), color=NA) +
+coord_sf(datum=NA) +
+geom_sf(data=manhattan_border, fill=NA, color="black") +
+labs(title = "Rodent sightings in Manhattan",
+subtitle = "2010 to 2018",
+caption = "Source: nyc.gov",
+fill = "Total sightings") +
+scale_fill_gradient2(low = "snow1", mid = "rosybrown4",
+high = "grey24", midpoint=110, limits=c(0, 700)) +
+geom_point(data=pizza_rat, aes(x=Longitude, y=Latitude), color="orange", size=4) +
+annotate("text", x=-73.93, y=40.73, label="Pizza Rat (2015)", size=4) +
+annotate("segment", x=-73.95, xend=-73.978, y=40.73, yend=40.733,
+colour = "black", size=0.5, alpha=0.6,
+arrow=arrow(length=unit(0.2, "cm"), type="closed")) +
+theme_void() +
+theme(panel.grid.major = element_line(colour = 'transparent'))
+manhattan_border <- filter(boroughs, NAME=="New York")
+ggplot(manhattan_tracts) +
+geom_sf(aes(fill = total), color=NA) +
+coord_sf(datum=NA) +
+geom_sf(data=manhattan_border, fill=NA, color="black") +
+labs(title = "Rodent sightings in Manhattan",
+subtitle = "2010 to 2018",
+caption = "Source: nyc.gov",
+fill = "Total sightings") +
+scale_fill_gradient2(low = "snow1", mid = "rosybrown4",
+high = "grey24", midpoint=110, limits=c(0, 700)) +
+geom_point(data=pizza_rat, aes(x=Longitude, y=Latitude), color="orange", size=4) +
+annotate("text", x=-73.93, y=40.73, label="Pizza Rat (2015)", size=4) +
+annotate("segment", x=-73.95, xend=-73.978, y=40.73, yend=40.733,
+colour = "black", size=0.5, alpha=0.6,
+arrow=arrow(length=unit(0.2, "cm"), type="closed")) +
+theme_void() +
+theme(panel.grid.major = element_line(colour = 'transparent'))
+ggplot(manhattan_tracts) +
+geom_sf(aes(fill = total), color=NA) +
+coord_sf(datum=NA) +
+geom_sf(data=manhattan_border, fill=NA, color="black") +
+labs(title = "Rodent sightings in Manhattan",
+subtitle = "2010 to 2018",
+caption = "Source: nyc.gov",
+fill = "Total sightings") +
+scale_fill_gradient2(low = "snow1", mid = "rosybrown4",
+high = "grey24", midpoint=140, limits=c(0, 700)) +
+geom_point(data=pizza_rat, aes(x=Longitude, y=Latitude), color="orange", size=4) +
+annotate("text", x=-73.93, y=40.73, label="Pizza Rat (2015)", size=4) +
+annotate("segment", x=-73.95, xend=-73.978, y=40.73, yend=40.733,
+colour = "black", size=0.5, alpha=0.6,
+arrow=arrow(length=unit(0.2, "cm"), type="closed")) +
+theme_void() +
+theme(panel.grid.major = element_line(colour = 'transparent'))
+ggplot(manhattan_tracts) +
+geom_sf(aes(fill = total), color=NA) +
+coord_sf(datum=NA) +
+geom_sf(data=manhattan_border, fill=NA, color="black") +
+labs(title = "Rodent sightings in Manhattan",
+subtitle = "2010 to 2018",
+caption = "Source: nyc.gov",
+fill = "Total sightings") +
+scale_fill_gradient2(low = "snow1", mid = "rosybrown4",
+high = "grey24", midpoint=350, limits=c(0, 700)) +
+geom_point(data=pizza_rat, aes(x=Longitude, y=Latitude), color="orange", size=4) +
+annotate("text", x=-73.93, y=40.73, label="Pizza Rat (2015)", size=4) +
+annotate("segment", x=-73.95, xend=-73.978, y=40.73, yend=40.733,
+colour = "black", size=0.5, alpha=0.6,
+arrow=arrow(length=unit(0.2, "cm"), type="closed")) +
+theme_void() +
+theme(panel.grid.major = element_line(colour = 'transparent'))
+ggplot(manhattan_tracts) +
+geom_sf(aes(fill = total), color=NA) +
+coord_sf(datum=NA) +
+geom_sf(data=manhattan_border, fill=NA, color="black") +
+labs(title = "Rodent sightings in Manhattan",
+subtitle = "2010 to 2018",
+caption = "Source: nyc.gov",
+fill = "Total sightings") +
+scale_fill_gradient2(low = "snow1", mid = "rosybrown4",
+high = "grey24", midpoint=280, limits=c(0, 700)) +
+geom_point(data=pizza_rat, aes(x=Longitude, y=Latitude), color="orange", size=4) +
+annotate("text", x=-73.93, y=40.73, label="Pizza Rat (2015)", size=4) +
+annotate("segment", x=-73.95, xend=-73.978, y=40.73, yend=40.733,
+colour = "black", size=0.5, alpha=0.6,
+arrow=arrow(length=unit(0.2, "cm"), type="closed")) +
+theme_void() +
+theme(panel.grid.major = element_line(colour = 'transparent'))
+ggplot(manhattan_tracts) +
+geom_sf(aes(fill = total), color=NA) +
+coord_sf(datum=NA) +
+geom_sf(data=manhattan_border, fill=NA, color="black") +
+labs(title = "Rodent sightings in Manhattan",
+subtitle = "2010 to 2018",
+caption = "Source: nyc.gov",
+fill = "Total sightings") +
+scale_fill_gradient2(low = "snow1", mid = "rosybrown4",
+high = "grey24", midpoint=350, limits=c(0, 700)) +
+geom_point(data=pizza_rat, aes(x=Longitude, y=Latitude), color="orange", size=4) +
+annotate("text", x=-73.93, y=40.73, label="Pizza Rat (2015)", size=4) +
+annotate("segment", x=-73.95, xend=-73.978, y=40.73, yend=40.733,
+colour = "black", size=0.5, alpha=0.6,
+arrow=arrow(length=unit(0.2, "cm"), type="closed")) +
+theme_void() +
+theme(panel.grid.major = element_line(colour = 'transparent'))
+view(CENSUS_KEY)
+.Renviron
+".Renviron"
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+library(stringr)
+unzip("Service_Requests_from_2010_to_Present_rodents.zip", "Service_Requests_from_2010_to_Present_rodents.csv")
+complaints <- read.csv("Service_Requests_from_2010_to_Present_rodents.csv", stringsAsFactors = F)
+library(sf)
+library(censusapi)
+library(tigris)
+options(tigris_class = "sf")
+nyc <- tracts(state = "NY", county = "New York", cb=T)
+five_boroughs <- rbind_tigris(
+tracts(state = "NY", county = "New York", cb = TRUE),
+tracts(state = "NY", county = "Kings", cb = TRUE),
+tracts(state = "NY", county = "Bronx", cb = TRUE),
+tracts(state = "NY", county = "Richmond", cb = TRUE),
+tracts(state = "NY", county = "Queens", cb = TRUE))
+rodents <- complaints %>%
+select(Unique.Key, Created.Date, Descriptor, Location.Type, Incident.Zip,
+Incident.Address, Street.Name, City, BBL, Borough, Latitude,
+Longitude, Location) %>%
+filter(Descriptor %in% c("Rat Sighting", "Mouse Sighting"))
+rodents_complete <- rodents[complete.cases(rodents[ , 11:12]),]
+# Tidy up date information (not used in final visualisation)
+rodents_complete$date <- mdy_hms(rodents_complete$Created.Date)
+rodents_complete$year <- year(rodents_complete$date)
+# Add spatial data to dataframe
+rodents_spatial <- rodents_complete %>% st_as_sf(coords=c("Longitude", "Latitude"),
+crs = "+proj=longlat") %>%
+st_transform(crs=st_crs(five_boroughs))
+# Map points to Census tracts
+rodent_points <- st_join(five_boroughs, rodents_spatial, left=T)
+manhattan_points <- st_join(nyc, rodents_spatial, left=T)
+# Create summarised data to map
+rodent_tracts <- rodent_points %>%
+group_by(GEOID) %>%
+summarise(total=n())
+manhattan_tracts <- manhattan_points %>%
+group_by(GEOID) %>%
+summarise(total=n())
+boroughs <- counties(state="NY", cb=T)
+borough_borders <- filter(boroughs, NAME %in% c("New York", "Kings", "Bronx", "Richmond", "Queens"))
+manhattan_border <- filter(boroughs, NAME=="New York")
+pizza_rat <- data.frame(name = "Pizza Rat (2015)", Longitude = -73.982272, Latitude = 40.732955)
+ggplot(manhattan_tracts) +
+geom_sf(aes(fill = total), color=NA) +
+coord_sf(datum=NA) +
+geom_sf(data=manhattan_border, fill=NA, color="black") +
+labs(title = "Rodent sightings in Manhattan",
+subtitle = "2010 to 2018",
+caption = "Source: nyc.gov",
+fill = "Total sightings") +
+scale_fill_gradient2(low = "snow1", mid = "rosybrown4",
+high = "grey24", midpoint=350, limits=c(0, 700)) +
+geom_point(data=pizza_rat, aes(x=Longitude, y=Latitude), color="orange", size=4) +
+annotate("text", x=-73.93, y=40.73, label="Pizza Rat (2015)", size=4) +
+annotate("segment", x=-73.95, xend=-73.978, y=40.73, yend=40.733,
+colour = "black", size=0.5, alpha=0.6,
+arrow=arrow(length=unit(0.2, "cm"), type="closed")) +
+theme_void() +
+theme(panel.grid.major = element_line(colour = 'transparent'))
+View(rodents_complete)
+unique(rodents_complete$Borough)
+rodents_boroughs <- rodents_complete %>%
+filter(Borough!="Unspecified") %>%
+group_by(Borough) %>%
+summarize(total=n())
+View(rodents_boroughs)
+ggplot(rodents_boroughs, aes(x=Borough, y=total, fill=Borough)) +
+geom_bar(stat="identity")
+ggplot(rodents_boroughs, aes(x=Borough, y=total, fill=Borough)) +
+geom_bar(stat="identity") +
+scale_fill_manual("Borough",
+values = c("BRONX" = "peachpuff4", "BROOKLYN" = "snow4", "MANHATTAN" = "rosybrown4",
+"QUEENS" = "darkgrey", "STATEN ISLAND" = "grey23"))
+ggplot(rodents_boroughs, aes(x=Borough, y=total, fill=Borough)) +
+geom_bar(stat="identity") +
+scale_fill_manual("Borough",
+values = c("BRONX" = "peachpuff4", "BROOKLYN" = "snow4", "MANHATTAN" = "bisque4",
+"QUEENS" = "darkgrey", "STATEN ISLAND" = "grey23"))
+ggplot(rodents_boroughs, aes(x=Borough, y=total, fill=Borough)) +
+geom_bar(stat="identity") +
+scale_fill_manual("Borough",
+values = c("BRONX" = "peachpuff4", "BROOKLYN" = "snow4", "MANHATTAN" = "bisque4",
+"QUEENS" = "darkgrey", "STATEN ISLAND" = "grey23")) +
+theme_minimal()
+ggplot(rodents_boroughs, aes(x=Borough, y=total, fill=Borough)) +
+geom_bar(stat="identity") +
+scale_fill_manual("Borough",
+values = c("BRONX" = "peachpuff4", "BROOKLYN" = "snow4", "MANHATTAN" = "bisque4",
+"QUEENS" = "darkgrey", "STATEN ISLAND" = "grey23")) +
+theme_minimal() +
+labs(x="Borough", y="Total sightings",
+title = "Rodent sightings in New York's five boroughs",
+subtitle = "2010 to 2018",
+caption = "Data from nyc.gov")
+rodents_years <- rodents_complete %>%
+filter(Borough!="Unspecified") %>%
+group_by(Borough, Year) %>%
+summarize(total=n())
+rodents_years <- rodents_complete %>%
+filter(Borough!="Unspecified") %>%
+group_by(Borough, year) %>%
+summarize(total=n())
+View(rodents_years)
+ggplot(rodents_years, aes(x=Borough, fill=year)) +
+geom_bar(position="fill") +
+theme_minimal() +
+labs(x="Borough", y="Total sightings",
+title = "Rodent sightings in New York's five boroughs",
+subtitle = "2010 to 2018",
+caption = "Data from nyc.gov")
+ggplot(rodents_years, aes(x=Borough, fill=year)) +
+geom_bar(position="dodge") +
+theme_minimal() +
+labs(x="Borough", y="Total sightings",
+title = "Rodent sightings in New York's five boroughs",
+subtitle = "2010 to 2018",
+caption = "Data from nyc.gov")
+ggplot(rodents_years, aes(x=Borough, y=total, fill=year)) +
+geom_bar(position="dodge") +
+theme_minimal() +
+labs(x="Borough", y="Total sightings",
+title = "Rodent sightings in New York's five boroughs",
+subtitle = "2010 to 2018",
+caption = "Data from nyc.gov")
+ggplot(rodents_years, aes(x=Borough, fill=year)) +
+geom_bar(position="fill") +
+theme_minimal() +
+labs(x="Borough", y="Total sightings",
+title = "Rodent sightings in New York's five boroughs",
+subtitle = "2010 to 2018",
+caption = "Data from nyc.gov")
+ggplot(rodents_years, aes(x=Borough, fill=year)) +
+geom_bar
+ggplot(rodents_years, aes(x=Borough, fill=year)) +
+geom_bar()
+ggplot(rodents_years, aes(x=Borough, y=total)) +
+geom_bar()
+ggplot(rodents_years, aes(x=Borough, y=year)) +
+geom_bar()
+ggplot(rodents_years, aes(x=Borough, fill=year)) +
+geom_bar()
+ggplot(rodents_boroughs, aes(x=Borough, y=total, fill=Borough)) +
+geom_bar(stat="identity") +
+scale_fill_manual("Borough",
+values = c("BRONX" = "peachpuff4", "BROOKLYN" = "snow4", "MANHATTAN" = "bisque4",
+"QUEENS" = "darkgrey", "STATEN ISLAND" = "grey23")) +
+theme_minimal() +
+labs(x="Borough", y="Total sightings",
+title = "Rodent sightings in New York's five boroughs",
+subtitle = "2010 to 2018",
+caption = "Data from nyc.gov")

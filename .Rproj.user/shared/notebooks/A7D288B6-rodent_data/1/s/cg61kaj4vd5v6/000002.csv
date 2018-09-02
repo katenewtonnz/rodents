@@ -1,0 +1,3 @@
+"0","# Tidy up date information (not used in final visualisation)"
+"0","rodents_complete$date <- mdy_hms(rodents_complete$Created.Date)"
+"0","rodents_complete$year <- year(rodents_complete$date)"

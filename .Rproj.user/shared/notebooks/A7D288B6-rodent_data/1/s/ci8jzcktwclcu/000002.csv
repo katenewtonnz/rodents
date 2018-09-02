@@ -1,0 +1,1 @@
+"0","rodents_complete <- rodents[complete.cases(rodents[ , 11:12]),]"

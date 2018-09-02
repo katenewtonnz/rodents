@@ -1,0 +1,4 @@
+"0","# Add spatial data to dataframe"
+"0","rodents_spatial <- rodents_complete %>% st_as_sf(coords=c(""Longitude"", ""Latitude""), "
+"0","                            crs = ""+proj=longlat"") %>% "
+"0","  st_transform(crs=st_crs(five_boroughs))"

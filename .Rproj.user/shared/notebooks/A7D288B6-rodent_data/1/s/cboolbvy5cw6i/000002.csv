@@ -1,0 +1,7 @@
+"0","# Map points to Census tracts"
+"0","rodent_points <- st_join(five_boroughs, rodents_spatial, left=T)"
+"2","although coordinates are longitude/latitude, st_intersects assumes that they are planar
+"
+"0","manhattan_points <- st_join(nyc, rodents_spatial, left=T)"
+"2","although coordinates are longitude/latitude, st_intersects assumes that they are planar
+"

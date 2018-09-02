@@ -1,0 +1,2 @@
+"0","unzip(""Service_Requests_from_2010_to_Present_rodents.zip"", ""Service_Requests_from_2010_to_Present_rodents.csv"")"
+"0","complaints <- read.csv(""Service_Requests_from_2010_to_Present_rodents.csv"", stringsAsFactors = F)"
